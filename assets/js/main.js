@@ -1,8 +1,29 @@
-/**
- * Template Name: StEvolve
- * Updated: Nov12 2023
- * Author: StEvolve
- */
+
+
+// Select the video element
+const video = document.getElementById('myVideo');
+
+// Create an Intersection Observer
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      // The video is in view, play or unmute it
+      video.play();  // Play the video
+      video.muted = false;  // Unmute the video
+    } else {
+      // The video is out of view, pause or mute it
+      video.pause();  // Pause the video
+      video.muted = true;  // Mute the video
+    }
+  });
+}, {
+  threshold: 0.5  // Trigger when 50% of the video is in view
+});
+
+// Start observing the video element
+observer.observe(video);
+
+
 document.addEventListener("DOMContentLoaded", () => {
   "use strict";
 
